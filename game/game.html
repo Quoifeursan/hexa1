@@ -157,30 +157,43 @@
 
   //ITEMS DE DEPART
     { id: 'Illumination', name: 'Illumination', desc: '+100 Transcendance',maxRound: 7, apply: (ctx) => { ctx.player.trans += 100; } },
+
+
+
+
+
+
+
+
+
+
+
     { id: 'mage', name: 'Baton ancestral', desc: '+50 Énergie',maxRound: 7, apply: (ctx) => { ctx.player.energie  += 50; } },
     { id: 'bully', name: 'Dague affinée', desc: '+50 Force',maxRound: 7, apply: (ctx) => { ctx.player.force += 50; } },
     { id: 'pavins', name: 'Armure des Pavins', desc: '+40 Résistance Reel<br>+40 résistance Spéciale<br>+150 PV',maxRound: 7, apply: (ctx) => { ctx.player.resSpec += 40; ctx.player.resReal += 40; ctx.player.maxHP += 150; ctx.player.hp += 150;} },
-    { id: 'book', name: 'Livre magique', desc: '+10 Suppression Spéciale<br>+10 Suppression Réel,',maxRound: 7, apply: (ctx) => { ctx.player.supSpec += 10; ctx.player.supReal += 10;} },
+    { id: 'book', name: 'Livre magique', desc: '+20 Suppression Spéciale<br>+20 Suppression Réel,',maxRound: 7, apply: (ctx) => { ctx.player.supSpec += 20; ctx.player.supReal += 20;} },
     { id: 'hero', name: 'Fusil du héro', desc: '+20% de chance de critique<br>+15 Force',maxRound: 7, apply: (ctx) => { ctx.player.crit += 20; ctx.player.force += 15;} },
     { id: 'ring', name: 'Bague sainte', desc: '+20 Energie<br>+100 PV',maxRound: 7, apply: (ctx) => { ctx.player.energie += 20; ctx.player.maxHP += 100; ctx.player.hp += 100;} },
-
+    {id: 'fruit', name: 'Fruit vert', desc:'Vous gagnez +10PVMax a chaque élimination', maxround: 7, onKill: (ctx) => {ctx.player.maxHP += 10; ctx.player.hp += 10;}},
 
   //ITEM RARES
     { id: 'azerty', name: 'Sceptre d`azerty', desc: "+200 PV<br>Chaque attaque infligée vous occtoie: +4 Énergie",unlockRound: 10, maxRound: 23, apply: (ctx) => {ctx.player.maxHP += 100; ctx.player.hp += 100;}, onAttack: (ctx) => { ctx.player.energie += 4;} },
-    { id: 'granitShield', name: 'Bouclier de granit', desc: 'À chaque attaque subie : +4% des dégâts subis en PV Max.',unlockRound: 10, maxRound: 23, onHit: (ctx, dmg) => { ctx.player.maxHP = Math.ceil(ctx.player.maxHP + dmg * 0.04); } },
+    { id: 'granitShield', name: 'Bouclier de granit', desc: 'À chaque attaque subie : +10% des dégâts subis en PV Max.',unlockRound: 10, maxRound: 23, onHit: (ctx, dmg) => { ctx.player.maxHP = Math.ceil(ctx.player.maxHP + dmg * 0.10); } },
     { id: 'restes', name: 'Pomme ensorcelée', desc: 'À chaque ennemi tué : +10% PV max (soin).',unlockRound: 10, maxRound: 23, onKill: (ctx) => { const heal = Math.floor(ctx.player.maxHP * 0.10); ctx.player.hp = clamp(ctx.player.hp + heal, 0, ctx.player.maxHP); } }, 
     { id: 'furry', name: 'Epée maudite de Rexil', desc: 'Vous sacrifiez 25% de vos PV max mais doublez vos dégâts réels.',unlockRound: 10, maxRound: 23, apply: (ctx) => { ctx.player.maxHP = Math.floor(ctx.player.maxHP * 0.75); if (ctx.player.hp > ctx.player.maxHP) { ctx.player.hp = ctx.player.maxHP; } ctx.player.force *= 2; }},    
     { id: 'ledruarmor', name: 'Armure Ledruienne', desc: 'À chaque attaque subie : +10 transandance',unlockRound: 10, maxRound: 23, onHit: (ctx, dmg) => { ctx.player.trans += 10; } },
     { id: 'harpe', name: 'harpe élémentaire', desc: 'Chaque tour vous soignez vos PV équivalents à 50% de votre Energie',unlockRound: 10, maxRound: 23, onKill: (ctx) => { const heal = Math.floor(ctx.player.energie * 0.50); ctx.player.hp = clamp(ctx.player.hp + heal, 0, ctx.player.maxHP); } },
     { id: 'magicspirit', name: 'Esprit magique', desc: "Vous gagnez 60% de votre énergie en PV Max.",unlockRound: 10, maxRound: 23, apply: (ctx) => { const bonus = Math.floor(ctx.player.energie * 0.6); ctx.player.maxHP += bonus; ctx.player.hp += bonus; } },
-    { id: 'gambit', name: 'Fruit de Phenox', desc: 'vous divisez par 2 toutes vos stats offensives mais vous doublez vos PV Max',unlockRound: 10, maxRound: 23, apply: (ctx) => {ctx.player.maxHP *= 2 ; ctx.player.energie /=2; ctx.player.force /=2; ctx.player.trans /=2; ctx.player.hp = ctx.player.maxHP; }},
-    { id: 'pikpik', name: 'Bouclier de Jorifice', desc: 'vous renvoyez a votre adversaire 10% des PV qu il vous inflige', unlockRound: 10, maxRound: 23, onHit: (ctx, dmg) => { const reflect = Math.floor(dmg * 0.10); ctx.monster.hp = clamp(ctx.monster.hp - reflect, 0, ctx.monster.maxHP);} },
+    { id: 'gambit', name: 'Fruit de Phenox', desc: 'vous divisez par 2 toutes vos stats offensives mais multipliez vos PV Max par 2,5',unlockRound: 10, maxRound: 23, apply: (ctx) => {ctx.player.maxHP *= 2,5 ; ctx.player.energie /=2; ctx.player.force /=2; ctx.player.trans /=2; ctx.player.hp = ctx.player.maxHP; }},
+    { id: 'pikpik', name: 'Bouclier de Jorifice', desc: '+200 PV<br>vous renvoyez a votre adversaire 10% des PV qu il vous inflige', unlockRound: 10, maxRound: 23, onHit: (ctx, dmg) => { const reflect = Math.floor(dmg * 0.10); ctx.monster.hp = clamp(ctx.monster.hp - reflect, 0, ctx.monster.maxHP); },  apply: (ctx) =>{ctx.player.maxHP += 200; ctx.player.hp += 200;} },
     { id: 'adrenaline', name: 'Adrénaline', desc: 'vous perdez tout vos PV mais vous gagnez +9000 vit et +1000 en attaque',unlockRound: 10, maxRound: 23, apply: (ctx) => { ctx.player.maxHP = Math.floor(ctx.player.maxHP = 1); if (ctx.player.hp > ctx.player.maxHP) { ctx.player.hp = ctx.player.maxHP; } ctx.player.force += 1000; ctx.player.speed +=9000; }},
 
   //ITEM EPIQUES
-    { id: 'aze72', name: 'Fusil Imperial AZE72', desc: "Chaque attaque infligée vous auguemente votre energie de 10%",unlockRound: 25, onAttack: (ctx) => { ctx.player.energie *= 1.1} },
-    { id: 'hyperviolent', name: 'Lame hyperviolente', desc: "+100% Crit<br>+200 Suppr.Reel<br>x2 Force",unlockRound: 25, apply: (ctx) => { ctx.player.force *= 2; ctx.player.crit = 100; ctx.player.supReal += 200;} },
-    { id: 'spec', name: 'Racine Sucrée', desc: "Vous gagnez un % de vos PVMax equivalents a vos critiques",unlockRound: 25, apply: (ctx) => { ctx.player.maxHP *= ctx.player.crit;} },
+    { id: 'aze72', name: 'Fusil Imperial AZE72', desc: "Chaque attaque infligée vous auguemente votre energie de 2%",unlockRound: 25, onAttack: (ctx) => { ctx.player.energie *= 1.02} },
+    { id: 'hyperviolent', name: 'Lame hyperviolente', desc: "+50% Crit<br>+100 Suppr.Reel<br>x2 Force",unlockRound: 25, apply: (ctx) => { ctx.player.force *= 2; ctx.player.crit += 50; ctx.player.supReal += 100;} },
+
+    { id: 'spec', name: 'Racine Sucrée', desc: "Vous gagnez un bonus de PV Max équivalent à votre pourcentage de critiques.", unlockRound: 25, apply: (ctx) => { const bonus = Math.round(ctx.player.maxHP * ((ctx.player.crit / 100) / 2)); ctx.player.maxHP += bonus; ctx.player.hp += bonus; } },
+    
     { id: 'miracle', name: 'Voile Miracle', desc: "+200 Res. Spe<br>+200 Res.Reel<br>+200 Res. Globale",unlockRound: 25, apply: (ctx) => { ctx.player.resSpec += 200;ctx.player.resReal += 200;ctx.player.resGlob += 200;} },
 
 
@@ -219,12 +232,12 @@
     let base = 0, res = 0;
     if (type==='special'){
       base = attacker.energie;
-      res = effRes(defender.resSpec, attacker.supSpec); // globale ne s'applique pas
+      res = effRes(defender.resSpec, attacker.supSpec); // globale ne s applique pas
     } else if (type==='real'){
       base = attacker.force;
       const r1 = effRes(defender.resReal, attacker.supReal);
-      const r2 = effRes(defender.resGlob, attacker.supBrut); // brut suppr réduit la globale
-      res = r1 + r2; // cumule les deux résistances
+      const r2 = effRes(defender.resGlob, attacker.supBrut); // brut suppr reduit la globale
+      res = r1 + r2; // cumule les deux res
     } else {
       base = attacker.trans;
       const rG = effRes(defender.resGlob, attacker.supBrut);
