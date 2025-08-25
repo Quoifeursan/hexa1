@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { id: 'book', name: 'Livre magique', desc: '+20 Suppression Spéciale<br>+20 Suppression Réel,',maxRound: 7, apply: (ctx) => { ctx.player.supSpec += 20; ctx.player.supReal += 20;} },
     { id: 'hero', name: 'Fusil du héro', desc: '+10% de chance de critique<br>+25 Force',maxRound: 7, apply: (ctx) => { ctx.player.crit += 10; ctx.player.force += 25;} },
     { id: 'ring', name: 'Bague sainte', desc: '+20 Energie<br>+100 PV',maxRound: 7, apply: (ctx) => { ctx.player.energie += 20; ctx.player.maxHP += 100; ctx.player.hp += 100;} },
-    { id: 'fruit', name: 'Fruit vert', desc:'Vous gagnez +20PVMax à chaque élimination (max 10 stacks)', maxRound: 7, onKill: (ctx) => { ctx.player.stacks.fruit = (ctx.player.stacks.fruit || 0); if (ctx.player.stacks.fruit < 10) { ctx.player.maxHP += 20; ctx.player.hp += 20; ctx.player.stacks.fruit++; } } },
+    { id: 'fruit', name: 'Fruit vert', desc:'Vous gagnez +15 PVMax à chaque élimination', maxRound: 7, onKill: (ctx) => { ctx.player.stacks.fruit = (ctx.player.stacks.fruit || 0);  ctx.player.maxHP += 15; ctx.player.hp += 15; ctx.player.stacks.fruit++;  } },
 
 
   //ITEM RARES
@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
     { id: 'endurancebreaker', name: 'Briseur d’Endurance', desc: "À chaque attaque infligée au même adversaire, vos dégâts augmentent de 2% (reset après sa mort).", unlockRound: 15, maxRound: 51, onAttack: (ctx) => { if (!ctx.player.stacks) ctx.player.stacks = 0; ctx.player.stacks += 0.02;}, onDamage: (ctx, dmg) => { return Math.floor(dmg * (1 + (ctx.player.stacks || 0))); }, onKill: (ctx) => { ctx.player.stacks = 0;} },
 
 
-    { id: 'ironwill', name: 'Volonté de Fer', desc: "Quand vos PV passent sous 30%, vous gagnez +50 Résistance Spéciale et Réelle jusqu’à la fin du combat", unlockRound: 10, maxRound: 49, onTurn: (ctx) => { if (ctx.player.hp <= ctx.player.maxHP * 0.3) { ctx.player.resSpec += 50; ctx.player.resReal += 50; } } },
+  //  { id: 'ironwill', name: 'Volonté de Fer', desc: "Quand vos PV passent sous 30%, vous gagnez +50 Résistance Spéciale et Réelle jusqu’à la fin du combat", unlockRound: 10, maxRound: 49, onTurn: (ctx) => { if (ctx.player.hp <= ctx.player.maxHP * 0.3) { ctx.player.resSpec += 50; ctx.player.resReal += 50; } } },
 
-{ id: 'shadowdagger', name: 'Dague de l’Ombre', desc: "Vos coups critiques infligent +25% de dégâts supplémentaires", unlockRound: 10, maxRound: 49, onDamage: (ctx, dmg) => { if (Math.random()*100 < ctx.player.crit) { return Math.floor(dmg * 1.25); } return dmg; } },
+//{ id: 'shadowdagger', name: 'Dague de l’Ombre', desc: "Vos coups critiques infligent +25% de dégâts supplémentaires", unlockRound: 10, maxRound: 49, onDamage: (ctx, dmg) => { if (Math.random()*100 < ctx.player.crit) { return Math.floor(dmg * 1.25); } return dmg; } },
 
 { id: 'stoneheart', name: 'Cœur de Pierre', desc: "Vous gagnez +1% PV Max à chaque coup reçu (max 30%)", unlockRound: 10, maxRound: 49, onHit: (ctx, dmg) => { ctx.player.stacks.stoneheart = (ctx.player.stacks.stoneheart || 0); if (ctx.player.stacks.stoneheart < 30) { ctx.player.maxHP = Math.floor(ctx.player.maxHP * 1.01); ctx.player.stacks.stoneheart++; } } },
   //ITEM EPIQUES
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 { id: 'manashield', name: 'Bouclier de Mana', desc: "Quand vous subissez des dégâts, 50% sont absorbés par votre énergie au lieu de vos PV", unlockRound: 50, maxRound: 100, onHit: (ctx, dmg) => { const manaDmg = Math.floor(dmg * 0.5); if (ctx.player.energie >= manaDmg) { ctx.player.energie -= manaDmg; return Math.floor(dmg * 0.5); } return dmg; } },
 
-{ id: 'stormbringer', name: 'Porte-Tempête', desc: "Chaque attaque a 20% de chance d’électrocuter l’ennemi, infligeant 10% de ses PV actuels en dégâts bruts", unlockRound: 50, maxRound: 100, onAttack: (ctx) => { if (Math.random() < 0.2) { const shock = Math.floor(ctx.monster.hp * 0.1); ctx.monster.hp = clamp(ctx.monster.hp - shock, 0, ctx.monster.maxHP); } } },
+//{ id: 'stormbringer', name: 'Porte-Tempête', desc: "Chaque attaque a 20% de chance d’électrocuter l’ennemi, infligeant 10% de ses PV actuels en dégâts bruts", unlockRound: 50, maxRound: 100, onAttack: (ctx) => { if (Math.random() < 0.2) { const shock = Math.floor(ctx.monster.hp * 0.1); ctx.monster.hp = clamp(ctx.monster.hp - shock, 0, ctx.monster.maxHP); } } },
 
     
     ]
