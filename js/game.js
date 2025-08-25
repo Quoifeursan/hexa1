@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     playButton.addEventListener('click', backToMenu);
   }
 });
-  // ITEMS AGOUGOUGAGA
+  // ITEMS AGOUGOUGAGAezrze
   const PASSIVES = [
 
 
