@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projet de test</title>
+  <link rel="stylesheet" href="css/game.css">
+</head>
+  <body>
+    <main class="main-container">
+      <div class="topbar">
+        <h1 class="topbar-title">Manche <span id="round">1</span></h1>
+        <button class="topbar-button" id="backToMenuButton">Revenir au menu</button>
+      </div>
+
+      <div class="row">
+        <div class="card" id="monsterCard">
+          <div class="card-informations">
+            <h2 class="card-enemy-name">Adversaire</h2>
+            <span class="card-enemy-tags" id="monsterTags"></span>
+          </div>
+
+          <div class="inner">
+            <div class="hpbar"><div class="fill" id="mHPFill"></div><div class="txt" id="mHPTxt"></div></div>
+            <div class="stats">
+              <div class="stats-list">
+                <div class="statline"><p>Énergie</p><b id="mEnergie">0</b></div>
+                <div class="statline"><p>Force</p><b id="mForce">0</b></div>
+                <div class="statline"><p>Transcendance</p><b id="mTrans">0</b></div>
+                <div class="statline"><p>Vitesse</p><b id="mVitesse">0</b></div>
+                <div class="statline"><p>Critique</p><b id="mCrit">0%</b></div>
+              </div>
+
+              <div class="stats-list">
+                <div class="statline"><p>RÉS. Spéciale</p><b id="mResSpec">0</b></div>
+                <div class="statline"><p>RÉS. Réelle</p><b id="mResReal">0</b></div>
+                <div class="statline"><p>RÉS. Globale</p><b id="mResGlob">0</b></div>
+                <div class="statline"><p>SUPPR. Spéciale</p><b id="mSupSpec">0</b></div>
+                <div class="statline"><p>SUPPR. Réelle</p><b id="mSupReal">0</b></div>
+                <div class="statline"><p>SUPPR. Brut</p><b id="mSupBrut">0</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-informations">
+            <h2 class="card-player-name">Joueur</h2 class="card-player-name">
+            <span class="card-player-tags" id="passiveList"></span>
+          </div>
+
+          <div class="inner">
+            <div class="hpbar"><div class="fill" id="pHPFill"></div><div class="txt" id="pHPTxt"></div></div>
+            <div class="stats">
+              <div class="stats-list">
+                <div class="statline"><p>Énergie</p><b id="pEnergie">0</b></div>
+                <div class="statline"><p>Force</p><b id="pForce">0</b></div>
+                <div class="statline"><p>Transcendance</p><b id="pTrans">0</b></div>
+                <div class="statline"><p>Vitesse</p><b id="pVitesse">0</b></div>
+                <div class="statline"><p>Critique</p><b id="pCrit">0%</b></div>
+              </div>
+
+              <div class="stats-list">
+                <div class="statline"><p>RÉS. Spéciale</p><b id="pResSpec">0</b></div>
+                <div class="statline"><p>RÉS. Réelle</p><b id="pResReal">0</b></div>
+                <div class="statline"><p>RÉS. Globale</p><b id="pResGlob">0</b></div>
+                <div class="statline"><p>SUPPR. Spéciale</p><b id="pSupSpec">0</b></div>
+                <div class="statline"><p>SUPPR. Réelle</p><b id="pSupReal">0</b></div>
+                <div class="statline"><p>SUPPR. Brut</p><b id="pSupBrut">0</b></div>
+              </div>
+            </div>
+
+            <div class="attack-buttons">
+              <button id="atkSpecial" class="b-blue">Spéciale 🔵</button>
+              <button id="atkReal" class="b-orange">Réelle 🟠</button>
+              <button id="atkPure" class="b-red">Pure 🔴</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="log" id="log"></div>
+      </div>
+    </main>
+
+    <!-- Items choice modal -->
+    <dialog id="passiveModal">
+      <div class="modal-items-choice">
+        <h2 class="items-choice-title">Choisisser un Objet</h2>
+
+        <img class="modal-line" src="./img/line.png">
+
+        <div class="items-choice-grid" id="choices">
+          <!-- Les items seront ici -->
+        </div>
+
+        <img class="modal-line" src="./img/line.png">
+
+        <footer class="items-choice-footer">
+          <button class="items-choice-button" id="closePassive">Fermer</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Lose modal -->
+    <dialog id="loseModal">
+      <div class="modal-lose">
+        <h2 class="lose-message">Vous avez perdu !</h2>
+
+        <img class="modal-line" src="./img/line.png">
+
+        <footer class="lose-footer">
+          <button class="lose-button" id="btnReload">Relancer</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <script src="js/game.js"></script>
+  </body>
+</html>

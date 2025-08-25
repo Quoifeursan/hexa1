@@ -3,58 +3,97 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hexa1 — Accueil</title>
-  <style>
-    :root{
-      --bg:#0f1115; --panel:#171a21; --muted:#9aa4af; --text:#e8edf2;
-      --green:#22c55e; --red:#ef4444; --blue:#38bdf8; --orange:#f59e0b; --pink:#f472b6; --slate:#334155;
-    }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0e1116,#0b0d11);color:var(--text);font:500 14px/1.4 system-ui,Segoe UI,Roboto,Inter,Arial;display:flex;align-items:center;justify-content:center}
-    .card{background:var(--panel);border:1px solid #222831;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.35);padding:32px;max-width:600px;text-align:center}
-    h1{font-size:26px;margin:0 0 16px}
-    p{color:var(--muted);margin-bottom:20px}
-    button{display:block;width:100%;background:#1f2837;color:var(--text);border:1px solid #2b3647;border-radius:12px;padding:14px 10px;font-weight:700;cursor:pointer;transition:.15s transform,.15s background;margin:10px 0}
-    button:hover{transform:translateY(-1px);background:#253145}
-    dialog{border:none;border-radius:16px;padding:0;max-width:720px;width:calc(100% - 24px)}
-    .modal{background:#0f1420;color:var(--text);border:1px solid #223047;border-radius:16px}
-    .modal header{padding:14px 16px;border-bottom:1px solid #223047;font-weight:800}
-    .modal .body{padding:16px;line-height:1.6}
-    .modal .foot{padding:12px;border-top:1px solid #223047;display:flex;justify-content:flex-end}
-  </style>
+  <meta name="description" content="Hexa1 - Un monde en perpétuelle lutte, survivez aux vagues ennemies" />
+  <title>Projet de test</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="card">
-    <h1>⚔️ Hexa1</h1>
-    <p>Un monde en perpétuelle lutte… survivrez-vous aux vagues ennemies ?</p>
-    <button onclick="window.location.href='game/game.html'">▶ Jouer</button>
-    <button onclick="document.getElementById('rules').showModal()">📖 Règles</button>
-    <button onclick="document.getElementById('lore').showModal()">📜 Histoire</button>
-  </div>
+  <main class="main-container">
+    <section class="hero-section">
+      <header class="hero-header">
+        <h1 class="hero-title">Projet de test</h1>
+      </header>
 
-  <!-- Règles -->
+      <img class="line" src="./img/line.png">
+
+      <nav class="main-navigation">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-button" id="playButton">
+              <span class="button-text">Jouer</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-button" id="rulesButton">
+              <span class="button-text">Règles</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-button" id="loreButton">
+              <span class="button-text">Histoire</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <!-- Modal Règles -->
   <dialog id="rules" class="modal">
-    <header>Règles</header>
-    <div class="body">
-      <p>Vous affrontez des adversaires successifs. Choisissez vos objets aux checkpoints toutes les 5 manches. Chaque type d’attaque dépend d’une statistique différente :</p>
-      <ul>
-        <li>🔵 Attaque spéciale → basée sur Énergie</li>
-        <li>🟠 Attaque réelle → basée sur Force</li>
-        <li>🔴 Attaque pure → basée sur Transcendance</li>
-      </ul>
-      <p>Les résistances réduisent les dégâts, les suppressions les contournent.</p>
+    <div class="modal-container">
+      <header class="modal-header">
+        <h2 class="modal-title">Règles du jeu</h2>
+      </header>
+
+      <img class="modal-line" src="./img/line.png">
+
+      <div class="modal-body">
+        <p>Vous affrontez des adversaires successifs. Choisissez vos objets aux checkpoints toutes les 5 manches. Chaque type d'attaque dépend d'une statistique différente :</p>
+        <ul class="rules-list">
+          <li class="rules-item">
+            <span class="attack-type attack-type--special">🔵 Attaque spéciale</span>
+            <span class="attack-stat">➡︎ basée sur Énergie</span>
+          </li>
+          <li class="rules-item">
+            <span class="attack-type attack-type--physical">🟠 Attaque réelle</span>
+            <span class="attack-stat">➡︎ basée sur Force</span>
+          </li>
+          <li class="rules-item">
+            <span class="attack-type attack-type--pure">🔴 Attaque pure</span>
+            <span class="attack-stat">➡︎ basée sur Transcendance</span>
+          </li>
+        </ul>
+        <p>Les résistances réduisent les dégâts, les suppressions les contournent.</p>
+      </div>
+
+      <img class="modal-line" src="./img/line.png">
+
+      <footer class="modal-footer">
+        <button class="modal-button" onclick="closeModal('rules')">Fermer</button>
+      </footer>
     </div>
-    <div class="foot"><button onclick="document.getElementById('rules').close()">Fermer</button></div>
   </dialog>
 
-  <!-- Lore -->
+  <!-- Modal Histoire -->
   <dialog id="lore" class="modal">
-    <header>Histoire</header>
-    <div class="body">
-      <p>Depuis des siècles, le royaume d’Hexa1 est assiégé par des forces obscures. Chaque héros qui s’y aventure affronte une succession infinie d’ennemis…</p>
-      <p>À vous de survivre, d’accumuler puissance et reliques, et peut-être de découvrir la vérité derrière ces vagues sans fin.</p>
+    <div class="modal-container">
+      <h2 class="modal-title">Histoire du monde</h2>
+
+      <img class="modal-line" src="./img/line.png">
+
+      <div class="modal-body">
+        <p>Depuis des siècles, le royaume d'Hexa1 est assiégé par des forces obscures. Chaque héros qui s'y aventure affronte une succession infinie d'ennemis…</p>
+        <p>À vous de survivre, d'accumuler puissance et reliques, et peut-être de découvrir la vérité derrière ces vagues sans fin.</p>
+      </div>
+
+      <img class="modal-line" src="./img/line.png">
+
+      <footer class="modal-footer">
+        <button class="modal-button" onclick="closeModal('lore')">Fermer</button>
+      </footer>
     </div>
-    <div class="foot"><button onclick="document.getElementById('lore').close()">Fermer</button></div>
   </dialog>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
