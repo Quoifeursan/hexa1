@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function newMonster(){
     const r = state.round;
     const t = Math.max(0, r - 1);
-    const growth = 1 + 0.06*t + 0.005*t*t; // doux au début, accélère lentement
+    const growth = 1 + 0.05*t + 0.004*t*t; // doux au début, accélère lentement
     const m = {
       name: 'adversaire',
       maxHP: Math.floor(220 * growth * rng(1,1.03)),
