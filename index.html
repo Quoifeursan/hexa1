@@ -4,96 +4,159 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Hexa1 - Un monde en perpétuelle lutte, survivez aux vagues ennemies" />
-  <title>Projet de test</title>
+  <title>Heck Showdown</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="./img/favicon.png">
 </head>
-<body>
-  <main class="main-container">
-    <section class="hero-section">
-      <header class="hero-header">
-        <h1 class="hero-title">Projet de test de baiser</h1>
-      </header>
+  <body>
+    <!-- Overlay pour l'animation de transition -->
+    <div id="fadeOverlay" class="transition-overlay"></div>
 
-      <img class="line" src="./img/line.png">
+    <!-- Section principale du jeu -->
+    <main class="game-main">
+      <section class="game-hero">
+        <header class="game-header">
+          <h1 class="game-title">Heck Showdown</h1>
+        </header>
 
-      <nav class="main-navigation">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <button class="nav-button" id="playButton">
-              <span class="button-text">Jouer</span>
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-button" id="rulesButton">
-              <span class="button-text">Règles</span>
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-button" id="loreButton">
-              <span class="button-text">Histoire</span>
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </section>
-  </main>
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
 
-  <!-- Modal Règles -->
-  <dialog id="rules" class="modal">
-    <div class="modal-container">
-      <header class="modal-header">
-        <h2 class="modal-title">Règles du jeu</h2>
-      </header>
+        <nav class="game-navigation">
+          <ul class="navigation-list">
+            <li class="navigation-item">
+              <button class="navigation-button" id="playButton">
+                <span class="button-text">Jouer</span>
+              </button>
+            </li>
+            <li class="navigation-item">
+              <button class="navigation-button" id="rulesButton">
+                <span class="button-text">Règles</span>
+              </button>
+            </li>
+            <li class="navigation-item">
+              <button class="navigation-button" id="loreButton">
+                <span class="button-text">Histoire</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </main>
 
-      <img class="modal-line" src="./img/line.png">
+    <!-- Éléments audio -->
+    <div class="audio-elements">
+      <!-- Son de clic -->
+      <audio id="clickSound" preload="auto">
+        <source src="./sounds/ClickSound.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+      </audio>
 
-      <div class="modal-body">
-        <p>Vous affrontez des adversaires successifs. Choisissez vos objets aux checkpoints toutes les 5 manches. Chaque type d'attaque dépend d'une statistique différente :</p>
-        <ul class="rules-list">
-          <li class="rules-item">
-            <span class="attack-type attack-type--special">🔵 Attaque spéciale</span>
-            <span class="attack-stat">➡︎ basée sur Énergie</span>
-          </li>
-          <li class="rules-item">
-            <span class="attack-type attack-type--physical">🟠 Attaque réelle</span>
-            <span class="attack-stat">➡︎ basée sur Force</span>
-          </li>
-          <li class="rules-item">
-            <span class="attack-type attack-type--pure">🔴 Attaque pure</span>
-            <span class="attack-stat">➡︎ basée sur Transcendance</span>
-          </li>
-        </ul>
-        <p>Les résistances réduisent les dégâts, les suppressions les contournent.</p>
-      </div>
-
-      <img class="modal-line" src="./img/line.png">
-
-      <footer class="modal-footer">
-        <button class="modal-button" onclick="closeModal('rules')">Fermer</button>
-      </footer>
+      <!-- Musique de fond -->
+      <audio id="backgroundSound" preload="auto" loop muted>
+        <source src="./sounds/BackgroundSound.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+      </audio>
     </div>
-  </dialog>
 
-  <!-- Modal Histoire -->
-  <dialog id="lore" class="modal">
-    <div class="modal-container">
-      <h2 class="modal-title">Histoire du monde</h2>
+    <!-- Overlay d'autorisation audio -->
+    <div id="audioPermissionOverlay" class="audio-overlay">
+      <div class="audio-modal">
+        <header class="audio-modal-header">
+          <h2 class="audio-modal-title">Activer la musique de fond</h2>
+        </header>
 
-      <img class="modal-line" src="./img/line.png">
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
 
-      <div class="modal-body">
-        <p>Depuis des siècles, le royaume d'Hexa1 est assiégé par des forces obscures. Chaque héros qui s'y aventure affronte une succession infinie d'ennemis…</p>
-        <p>À vous de survivre, d'accumuler puissance et reliques, et peut-être de découvrir la vérité derrière ces vagues sans fin.</p>
+        <div class="audio-modal-content">
+          <p class="audio-modal-description">Cliquez sur le bouton ci-dessous pour activer la musique de fond et profiter pleinement de l'expérience.</p>
+        </div>
+
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
+
+        <footer class="audio-modal-footer">
+          <button id="enableAudioButton" class="audio-modal-button">Activer l'audio</button>
+          <button id="closeAudioModalButton" class="audio-modal-button">Passer</button>
+        </footer>
       </div>
-
-      <img class="modal-line" src="./img/line.png">
-
-      <footer class="modal-footer">
-        <button class="modal-button" onclick="closeModal('lore')">Fermer</button>
-      </footer>
     </div>
-  </dialog>
 
-  <script src="js/script.js"></script>
-</body>
+    <!-- Modal des règles du jeu -->
+    <dialog id="rules" class="game-modal">
+      <div class="modal-wrapper">
+        <header class="modal-header">
+          <h2 class="modal-title">Règles du jeu</h2>
+        </header>
+
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
+
+        <div class="modal-content">
+          <p class="modal-description">Vous affrontez des adversaires successifs. Choisissez vos objets aux checkpoints toutes les 5 manches. Chaque type d'attaque dépend d'une statistique différente :</p>
+          <ul class="attack-types-list">
+            <li class="attack-type-item">
+              <span class="attack-type attack-type--special">🔵 Attaque spéciale</span>
+              <span class="attack-stat">➡︎ basée sur Énergie</span>
+            </li>
+            <li class="attack-type-item">
+              <span class="attack-type attack-type--physical">🟠 Attaque réelle</span>
+              <span class="attack-stat">➡︎ basée sur Force</span>
+            </li>
+            <li class="attack-type-item">
+              <span class="attack-type attack-type--pure">🔴 Attaque pure</span>
+              <span class="attack-stat">➡︎ basée sur Transcendance</span>
+            </li>
+          </ul>
+          <p class="modal-description">Les résistances réduisent les dégâts, les suppressions les contournent.</p>
+        </div>
+
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
+
+        <footer class="modal-footer">
+          <button class="modal-button" id="closeRulesButton">Fermer</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Modal de l'histoire -->
+    <dialog id="lore" class="game-modal">
+      <div class="modal-wrapper">
+        <header class="modal-header">
+          <h2 class="modal-title">Histoire du monde</h2>
+        </header>
+
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
+
+        <div class="modal-content">
+          <p class="modal-description">Depuis des siècles, le royaume d'Hexa1 est assiégé par des forces obscures. Chaque héros qui s'y aventure affronte une succession infinie d'ennemis…</p><br>
+          <p class="modal-description">À vous de survivre, d'accumuler puissance et reliques, et peut-être de découvrir la vérité derrière ces vagues sans fin.</p>
+        </div>
+
+        <div class="separator-line">
+          <img class="line" src="./img/line.png" alt="Ligne de séparation">
+        </div>
+
+        <footer class="modal-footer">
+          <button class="modal-button" id="closeLoreButton">Fermer</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Scripts JavaScript modulaires -->
+    <script src="js/audioManager.js"></script>
+    <script src="js/navigationManager.js"></script>
+    <script src="js/modalManager.js"></script>
+    <script src="js/eventManager.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
